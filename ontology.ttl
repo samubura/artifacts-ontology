@@ -1,0 +1,392 @@
+@prefix : <http://www.semanticweb.org/admin/ontologies/2023/artkl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix artkl: <http://www.semanticweb.org/admin/ontologies/2023/artkl#> .
+@base <http://www.semanticweb.org/admin/ontologies/2023/artkl#> .
+
+<http://www.semanticweb.org/admin/ontologies/2023/artkl> rdf:type owl:Ontology ;
+                                                          rdfs:comment "An Ontology for describing Artifacts at the Knowledge Level in the Agents and Artifacts meta-model for environment in Multi-Agent Systems." .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#accomplishes
+artkl:accomplishes rdf:type owl:ObjectProperty ;
+                   rdfs:domain artkl:Manual ;
+                   rdfs:range artkl:Function .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#contains
+artkl:contains rdf:type owl:ObjectProperty ;
+               owl:inverseOf artkl:isContainedBy ;
+               rdfs:domain artkl:Workspace ;
+               rdfs:range artkl:Artifact .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasCategory
+artkl:hasCategory rdf:type owl:ObjectProperty ;
+                  rdfs:domain artkl:Model ;
+                  rdfs:range artkl:Category .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasEvent
+artkl:hasEvent rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf artkl:hasFeature ;
+               rdfs:domain artkl:Model ;
+               rdfs:range artkl:Event .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasFeature
+artkl:hasFeature rdf:type owl:ObjectProperty ;
+                 rdfs:domain artkl:Model ;
+                 rdfs:range artkl:Feature .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasFirstStep
+artkl:hasFirstStep rdf:type owl:ObjectProperty ;
+                   owl:inverseOf artkl:isFirstStepOf ;
+                   rdf:type owl:FunctionalProperty ;
+                   rdfs:domain artkl:Manual ;
+                   rdfs:range artkl:Step .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasManual
+artkl:hasManual rdf:type owl:ObjectProperty ;
+                rdfs:domain artkl:Model ;
+                rdfs:range artkl:Manual .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasModel
+artkl:hasModel rdf:type owl:ObjectProperty ;
+               rdfs:domain artkl:Artifact ;
+               rdfs:range artkl:Model .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasNextStep
+artkl:hasNextStep rdf:type owl:ObjectProperty ;
+                  owl:inverseOf artkl:isNextStepOf ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain artkl:Step ;
+                  rdfs:range artkl:Step .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasObservableProperty
+artkl:hasObservableProperty rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf artkl:hasFeature ;
+                            rdfs:domain artkl:Model ;
+                            rdfs:range artkl:ObservableProperty .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasOperation
+artkl:hasOperation rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf artkl:hasFeature ;
+                   rdfs:domain artkl:Model ;
+                   rdfs:range artkl:Operation .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasRelationship
+artkl:hasRelationship rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf artkl:hasFeature ;
+                      rdfs:domain artkl:Model ;
+                      rdfs:range artkl:Relationship .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#isContainedBy
+artkl:isContainedBy rdf:type owl:ObjectProperty ,
+                             owl:FunctionalProperty ;
+                    rdfs:domain artkl:Artifact ;
+                    rdfs:range artkl:Workspace .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#isFirstStepOf
+artkl:isFirstStepOf rdf:type owl:ObjectProperty ;
+                    rdfs:domain artkl:Step ;
+                    rdfs:range artkl:Manual .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#isNextStepOf
+artkl:isNextStepOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain artkl:Step ;
+                   rdfs:range artkl:Step .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#isRepresentedBy
+artkl:isRepresentedBy rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf artkl:contains ;
+                      owl:inverseOf artkl:represents ;
+                      rdf:type owl:FunctionalProperty ,
+                               owl:InverseFunctionalProperty ;
+                      rdfs:domain artkl:Workspace ;
+                      rdfs:range artkl:WorkspaceArtifact .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#isServedBy
+artkl:isServedBy rdf:type owl:ObjectProperty ;
+                 owl:inverseOf artkl:serves ;
+                 rdfs:domain artkl:Function ;
+                 rdfs:range artkl:Category .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#isSubWorkspaceOf
+artkl:isSubWorkspaceOf rdf:type owl:ObjectProperty ;
+                       owl:inverseOf artkl:isTopWorkspaceOf ;
+                       rdf:type owl:FunctionalProperty ,
+                                owl:IrreflexiveProperty ;
+                       rdfs:domain artkl:Workspace ;
+                       rdfs:range artkl:Workspace .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#isTopWorkspaceOf
+artkl:isTopWorkspaceOf rdf:type owl:ObjectProperty ,
+                                owl:InverseFunctionalProperty ,
+                                owl:IrreflexiveProperty ;
+                       rdfs:domain artkl:Workspace ;
+                       rdfs:range artkl:Workspace .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#represents
+artkl:represents rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf artkl:isContainedBy ;
+                 rdf:type owl:FunctionalProperty ,
+                          owl:InverseFunctionalProperty ;
+                 rdfs:domain artkl:WorkspaceArtifact ;
+                 rdfs:range artkl:Workspace .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#serves
+artkl:serves rdf:type owl:ObjectProperty ;
+             rdfs:domain artkl:Category ;
+             rdfs:range artkl:Function .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#usesFeature
+artkl:usesFeature rdf:type owl:ObjectProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain artkl:Step ;
+                  rdfs:range artkl:Feature .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Artifact
+artkl:Artifact rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                            owl:onProperty artkl:hasModel ;
+                                                            owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass artkl:Model
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty artkl:isContainedBy ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass artkl:Workspace
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Category
+artkl:Category rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty artkl:serves ;
+                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onClass artkl:Function
+                                   ] .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Event
+artkl:Event rdf:type owl:Class ;
+            rdfs:subClassOf artkl:Feature .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Feature
+artkl:Feature rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Function
+artkl:Function rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#InvokeOperationStep
+artkl:InvokeOperationStep rdf:type owl:Class ;
+                          owl:equivalentClass [ owl:intersectionOf ( artkl:Step
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty artkl:usesFeature ;
+                                                                       owl:allValuesFrom artkl:Operation
+                                                                     ]
+                                                                   ) ;
+                                                rdf:type owl:Class
+                                              ] ;
+                          rdfs:subClassOf artkl:Step .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Manual
+artkl:Manual rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                          owl:onProperty artkl:accomplishes ;
+                                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass artkl:Function
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty artkl:hasFirstStep ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onClass artkl:Step
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Model
+artkl:Model rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                         owl:onProperty artkl:hasFeature ;
+                                                         owl:someValuesFrom artkl:Feature
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty artkl:hasManual ;
+                                                         owl:someValuesFrom artkl:Manual
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty artkl:hasCategory ;
+                                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                         owl:onClass artkl:Category
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#ObservableProperty
+artkl:ObservableProperty rdf:type owl:Class ;
+                         rdfs:subClassOf artkl:Feature .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#ObservePropertyStep
+artkl:ObservePropertyStep rdf:type owl:Class ;
+                          owl:equivalentClass [ owl:intersectionOf ( artkl:Step
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty artkl:usesFeature ;
+                                                                       owl:allValuesFrom artkl:ObservableProperty
+                                                                     ]
+                                                                   ) ;
+                                                rdf:type owl:Class
+                                              ] ;
+                          rdfs:subClassOf artkl:Step .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Operation
+artkl:Operation rdf:type owl:Class ;
+                rdfs:subClassOf artkl:Feature .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Relationship
+artkl:Relationship rdf:type owl:Class ;
+                   rdfs:subClassOf artkl:Feature .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Step
+artkl:Step rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                 owl:onProperty artkl:isFirstStepOf ;
+                                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass artkl:Manual
+                                               ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty artkl:isNextStepOf ;
+                                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onClass artkl:Step
+                                               ]
+                                             )
+                               ] .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#WaitForEventStep
+artkl:WaitForEventStep rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( artkl:Step
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty artkl:usesFeature ;
+                                                                    owl:allValuesFrom artkl:Event
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf artkl:Step .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Workspace
+artkl:Workspace rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Class ;
+                                                             owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty artkl:isTopWorkspaceOf ;
+                                                                             owl:someValuesFrom artkl:Workspace
+                                                                           ]
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty artkl:isSubWorkspaceOf ;
+                                                                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                             owl:onClass artkl:Workspace
+                                                                           ]
+                                                                         )
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty artkl:isRepresentedBy ;
+                                                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onClass artkl:WorkspaceArtifact
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] .
+
+
+###  http://www.semanticweb.org/admin/ontologies/2023/artkl#WorkspaceArtifact
+artkl:WorkspaceArtifact rdf:type owl:Class ;
+                        owl:equivalentClass [ rdf:type owl:Restriction ;
+                                              owl:onProperty artkl:represents ;
+                                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                              owl:onClass artkl:Workspace
+                                            ] ;
+                        rdfs:subClassOf artkl:Artifact .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( artkl:Artifact
+                artkl:Category
+                artkl:Feature
+                artkl:Function
+                artkl:Manual
+                artkl:Model
+                artkl:Step
+                artkl:Workspace
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( artkl:Event
+                artkl:ObservableProperty
+                artkl:Operation
+                artkl:Relationship
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( artkl:InvokeOperationStep
+                artkl:ObservePropertyStep
+                artkl:WaitForEventStep
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
