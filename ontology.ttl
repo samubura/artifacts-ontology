@@ -69,7 +69,6 @@ artkl:hasModel rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/admin/ontologies/2023/artkl#hasNextStep
 artkl:hasNextStep rdf:type owl:ObjectProperty ;
                   owl:inverseOf artkl:isNextStepOf ;
-                  rdf:type owl:FunctionalProperty ;
                   rdfs:domain artkl:Step ;
                   rdfs:range artkl:Step .
 
@@ -294,10 +293,17 @@ artkl:Relationship rdf:type owl:Class ;
 ###  http://www.semanticweb.org/admin/ontologies/2023/artkl#Step
 artkl:Step rdf:type owl:Class ;
            owl:equivalentClass [ rdf:type owl:Class ;
-                                 owl:unionOf ( [ rdf:type owl:Restriction ;
-                                                 owl:onProperty artkl:isFirstStepOf ;
-                                                 owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                                 owl:onClass artkl:Manual
+                                 owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty artkl:usesFeature ;
+                                                                        owl:someValuesFrom artkl:Feature
+                                                                      ]
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty artkl:isFirstStepOf ;
+                                                                        owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                        owl:onClass artkl:Manual
+                                                                      ]
+                                                                    ) ;
+                                                 rdf:type owl:Class
                                                ]
                                                [ rdf:type owl:Restriction ;
                                                  owl:onProperty artkl:isNextStepOf ;
