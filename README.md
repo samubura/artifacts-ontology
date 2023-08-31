@@ -5,12 +5,12 @@ An Ontology for Artifacts in the A&amp;A meta-model for environments in Multi-Ag
 _// TODO_
 
 # Structure of the Repository
-The file `ontology.ttl` is the definition of the core ontology with just classes and properties.
+The file [ontology.ttl](ontology.ttl) is the definition of the core ontology with just classes and properties.
 
-The folder `examples` has files including individuals to model some domain.
+The folder [examples](examples) has files including individuals to model some domain.
 
 # Contributing
-Usually, work only on examples.
+Usually, work only on examples. Do not work on the main branch directly, use either a custom branch or the `develop` one.
 
 To create a new example, copy the core ontology and start adding individuals.
 
